@@ -4,6 +4,10 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Hydrate } from 'react-query/hydration';
 import { RecoilRoot } from 'recoil';
+import { ThemeProvider } from 'styled-components';
+
+import { GlobalStyle } from '@/styles/global-style';
+import { theme } from '@/styles/theme';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
@@ -12,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         defaultOptions: {
           queries: {
             refetchOnWindowFocus: false,
+            staleTime: 10 * 1000,
           },
         },
       }),
@@ -22,7 +27,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <ReactQueryDevtools initialIsOpen={false} />
-          <Component {...pageProps} />
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <Component {...pageProps} />
+          </ThemeProvider>
         </Hydrate>
       </QueryClientProvider>
     </RecoilRoot>

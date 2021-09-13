@@ -1,4 +1,7 @@
 npx create-next-app 이름 --ts
+
+next@10 기준
+
 npm i react-query axios recoil
 npm i -D @types/node @types/react-dom ts-node
 
@@ -103,3 +106,12 @@ npm info "eslint-config-airbnb@latest" peerDependencies로
         "trailingComma": "all",
         "printWidth": 100
       }
+
+styled-components 설치
+
+npm i styled-components styled-reset
+npm i -D @types/styled-components
+npm i -D babel-plugin-styled-components
+
+\_app.tsx 설정
+\_document.tsx 설정
