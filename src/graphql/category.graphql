@@ -1,0 +1,23 @@
+query GetCategory($id: ID!) {
+  category(id: $id) {
+    id
+    name
+    reviews {
+      id
+      title
+      body
+      rating
+      categories {
+        id
+        name
+      }
+    }
+  }
+}
+
+query GetCategories {
+  categories {
+    id
+    name
+  }
+}

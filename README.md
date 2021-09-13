@@ -29,8 +29,6 @@ src를 만들고 다 넣기
       |     ├── styled.ts
       |     ├── types.ts
       ├── store
-      ├── utils
-      |     └── axios.ts
       └── styles
             ├── global-style.ts
             ├── styled.d.ts
@@ -115,3 +113,15 @@ npm i -D babel-plugin-styled-components
 
 \_app.tsx 설정
 \_document.tsx 설정
+
+react-query랑 graphql-request 같이 사용하는 법(+codegen)
+참고 : https://youtu.be/ZZrr82beJQk
+
+npm i react-query graphql graphql-request
+npm i -D @graphql-codegen/typescript-react-query @graphql-codegen/cli @graphql-codegen/typescript @graphql-codegen/typescript-operations
+
+1. codegen.yml 폴더 만들기
+2. graphql 폴더에 원하는 query나 mutation 넣기
+3. lib-clients에 graphql설정하기
+4. package.json에 "generate": "graphql-codegen --config codegen.yml" 스크립트 추가하기
+5. npm run generate로 generated폴더에 type이랑 useQuery useMutation 생성하기

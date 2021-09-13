@@ -1,0 +1,25 @@
+query GetReviews {
+  reviews {
+    id
+    title
+    body
+    rating
+    categories {
+      id
+      name
+    }
+  }
+}
+
+query GetReview($id: ID!) {
+  review(id: $id) {
+    id
+    title
+    body
+    rating
+    categories {
+      id
+      name
+    }
+  }
+}

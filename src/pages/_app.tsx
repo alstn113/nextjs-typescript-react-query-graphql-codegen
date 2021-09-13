@@ -8,6 +8,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { GlobalStyle } from '@/styles/global-style';
 import { theme } from '@/styles/theme';
+import HeaderComponent from '@/components/Header';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
@@ -16,7 +17,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         defaultOptions: {
           queries: {
             refetchOnWindowFocus: false,
-            staleTime: 10 * 1000,
           },
         },
       }),
@@ -27,8 +27,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <ReactQueryDevtools initialIsOpen={false} />
-          <GlobalStyle />
           <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <HeaderComponent />
             <Component {...pageProps} />
           </ThemeProvider>
         </Hydrate>

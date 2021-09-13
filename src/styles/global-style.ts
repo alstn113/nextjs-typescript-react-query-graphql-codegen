@@ -14,5 +14,7 @@ export const GlobalStyle = createGlobalStyle`
       text-decoration: none;
       color: inherit
     }
+    -ms-overflow-style: none; 
+    ::-webkit-scrollbar { display: none; }
   }
 `;
