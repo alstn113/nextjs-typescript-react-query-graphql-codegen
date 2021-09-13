@@ -2,7 +2,8 @@ import { GetReviewsQuery, useGetReviewsQuery } from '@/generated/graphql';
 import grahpqlRequestClient from '@/lib/clients/graphqlRequestClient';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
-import { dehydrate, DehydratedState, QueryClient } from 'react-query';
+import { DehydratedState, QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
 
 const HomePage = () => {
   const { isLoading, error, data } = useGetReviewsQuery<GetReviewsQuery, Error>(
@@ -30,15 +31,16 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
-
 export const getServerSideProps: GetServerSideProps = async (): Promise<{
   props: { dehydratedState: DehydratedState };
 }> => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(useGetReviewsQuery.getKey(), () =>
+  await queryClient.prefetchQuery(
+    useGetReviewsQuery.getKey(),
     useGetReviewsQuery.fetcher(grahpqlRequestClient),
   );
 
-  return { props: { dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))) } };
+  return { props: { dehydratedState: dehydrate(queryClient) } };
 };
+
+export default HomePage;

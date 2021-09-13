@@ -3,18 +3,24 @@ import { reset } from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
-  html {
+  html{
     box-sizing: border-box;
-    background: ${({ theme }) => theme.color.background};
-    color: ${({ theme }) => theme.color.white};
-    ${({ theme }) => theme.font.medium}
+    background: #F5F4F0;
+    display:block;
     height: 100%;
-
+    max-width: 640px;
+    margin:0 auto;
+    padding: 0;
     a {
-      text-decoration: none;
-      color: inherit
-    }
-    -ms-overflow-style: none; 
-    ::-webkit-scrollbar { display: none; }
+        text-decoration: none;
+      }
+  }
+
+  body{
+    background: lightgrey;
+    height:300vh;
+    padding: 1rem;
+    margin-top:0;
+    font-family:Verdana;
   }
 `;
