@@ -6,7 +6,7 @@ import { Hydrate } from 'react-query/hydration';
 import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from '@emotion/react';
 
-import GlobalStyle from '@/styles/global-style';
+import { GlobalStyle } from '@/styles/global-style';
 import { theme } from '@/styles/theme';
 import HeaderComponent from '@/components/Header';
 
