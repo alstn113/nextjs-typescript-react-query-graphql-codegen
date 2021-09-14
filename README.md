@@ -31,7 +31,7 @@ src를 만들고 다 넣기
       ├── store
       └── styles
             ├── global-style.ts
-            ├── styled.d.ts
+            ├── emotion.d.ts
             └── theme.ts
 
 npm info "eslint-config-airbnb@latest" peerDependencies로
@@ -105,14 +105,14 @@ npm info "eslint-config-airbnb@latest" peerDependencies로
         "printWidth": 100
       }
 
-styled-components 설치
-
-npm i styled-components styled-reset
-npm i -D @types/styled-components
-npm i -D babel-plugin-styled-components
+emotion 설치 및 설정
+참고 https://www.howdy-mj.me/css/emotion.js-intro/
+npm i @emotion/react @emotion/styled
+npm i -D @emotion/babel-plugin
+npm i emotion-reset
 
 \_app.tsx 설정
-\_document.tsx 설정
+.babelrc 설정
 
 react-query랑 graphql-request 같이 사용하는 법(+codegen)
 참고 : https://youtu.be/ZZrr82beJQk

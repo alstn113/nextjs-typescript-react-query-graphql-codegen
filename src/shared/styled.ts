@@ -1,27 +1,43 @@
-import styled from 'styled-components';
+import { css, keyframes } from '@emotion/react';
+import styled from '@emotion/styled';
 
-export const ReviewCard = styled.div`
-  ${({ theme }) => theme.shadow}
-  background: white;
-  margin: 60px auto;
-  padding: 1px 20px 20px 90px;
-  position: relative;
-  h2 {
-    margin-bottom: 0;
-  }
-  small {
-    margin-right: 10px;
-    color: #777;
+export const basicStyles = css`
+  background-color: white;
+  color: cornflowerblue;
+  border: 1px solid lightgreen;
+  border-right: none;
+  border-bottom: none;
+  box-shadow: 5px 5px 0 0 lightgreen, 10px 10px 0 0 lightyellow;
+  transition: all 0.1s linear;
+  margin: 3rem 0;
+  padding: 1rem 0.5rem;
+`;
+
+export const hoverStyles = css`
+  &:hover {
+    color: white;
+    background-color: lightgray;
+    border-color: aqua;
+    box-shadow: -15px -15px 0 0 aqua, -30px -30px 0 0 cornflowerblue;
   }
 `;
-export const ReviewRating = styled.div`
-  ${({ theme }) => theme.flexCenter}
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  background: #8e2ad6;
-  font-size: 3em;
-  width: 90px;
-  height: 90px;
-  color: white;
+export const bounce = keyframes`
+  from {
+    transform: scale(1.01);
+  }
+  to {
+    transform: scale(0.99);
+  }
+`;
+
+export const Basic = styled.div`
+  ${basicStyles};
+`;
+
+export const Combined = styled.div`
+  ${basicStyles};
+  ${hoverStyles};
+  & code {
+    background-color: linen;
+  }
 `;

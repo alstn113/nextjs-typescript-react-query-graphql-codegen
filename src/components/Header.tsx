@@ -1,5 +1,6 @@
 import { GetCategoriesQuery, useGetCategoriesQuery } from '@/generated/graphql';
 import grahpqlRequestClient from '@/lib/clients/graphqlRequestClient';
+import styled from '@emotion/styled';
 import Link from 'next/link';
 
 const HeaderComponent = () => {
@@ -11,6 +12,7 @@ const HeaderComponent = () => {
   return (
     <>
       <div>
+        <StyledHeader>우갸갸갸</StyledHeader>
         <Link href="/">
           <a>
             <h1>Minsoo Reviews</h1>
@@ -35,3 +37,8 @@ const HeaderComponent = () => {
 };
 
 export default HeaderComponent;
+
+export const StyledHeader = styled('div')`
+  background-color: ${({ theme }) => theme.color.light_violet1};
+  ${({ theme }) => theme.font.xlarge};
+`;

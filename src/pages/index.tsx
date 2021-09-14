@@ -1,10 +1,10 @@
-import { GetReviewsQuery, useGetReviewsQuery } from '@/generated/graphql';
-import grahpqlRequestClient from '@/lib/clients/graphqlRequestClient';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { DehydratedState, QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 
+import { GetReviewsQuery, useGetReviewsQuery } from '@/generated/graphql';
+import grahpqlRequestClient from '@/lib/clients/graphqlRequestClient';
 const HomePage = () => {
   const { isLoading, error, data } = useGetReviewsQuery<GetReviewsQuery, Error>(
     grahpqlRequestClient,

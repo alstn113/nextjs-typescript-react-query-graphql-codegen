@@ -1,4 +1,4 @@
-import { css, DefaultTheme } from 'styled-components';
+import { css } from '@emotion/react';
 
 const font = {
   small: css`
@@ -14,7 +14,7 @@ const font = {
     font-weight: 700;
   `,
   xlarge: css`
-    font-size: 3rem;
+    font-size: 5rem;
     font-weight: 700;
   `,
 };
@@ -29,7 +29,7 @@ const shadow = css`
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.07);
 `;
 
-export const theme: DefaultTheme = {
+export const theme = {
   color: {
     white: '#ffffff',
     background: '#000000',

@@ -4,9 +4,9 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Hydrate } from 'react-query/hydration';
 import { RecoilRoot } from 'recoil';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from '@emotion/react';
 
-import { GlobalStyle } from '@/styles/global-style';
+import GlobalStyle from '@/styles/global-style';
 import { theme } from '@/styles/theme';
 import HeaderComponent from '@/components/Header';
 
