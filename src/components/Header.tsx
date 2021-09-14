@@ -23,6 +23,11 @@ const HeaderComponent = () => {
               <a> {category?.name}</a>
             </Link>
           ))}
+          <div>
+            <Link href="/create">
+              <a>Create Review</a>
+            </Link>
+          </div>
         </nav>
       </div>
     </>

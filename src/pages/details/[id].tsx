@@ -1,14 +1,14 @@
 import { GetReviewQuery, useGetReviewQuery } from '@/generated/graphql';
 import grahpqlRequestClient from '@/lib/clients/graphqlRequestClient';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
+import { dehydrate, DehydratedState, QueryClient } from 'react-query';
 
 const ReviewDetailsPage = () => {
-  const {
-    query: { id },
-  } = useRouter();
+  const id = useRouter().query.id as string;
   const { isLoading, isError, error, data } = useGetReviewQuery<GetReviewQuery, Error>(
     grahpqlRequestClient,
-    { id: id as string },
+    { id },
   );
   if (isLoading) return <p>Loading...</p>;
   if (isError && error) return <p>Error {error.message}</p>;
@@ -22,6 +22,22 @@ const ReviewDetailsPage = () => {
       <p>{data?.review?.body}</p>s
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext,
+): Promise<{
+  props: { dehydratedState: DehydratedState };
+}> => {
+  const id = context.query.id as string;
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(
+    useGetReviewQuery.getKey({ id }),
+    useGetReviewQuery.fetcher(grahpqlRequestClient, { id }),
+  );
+  console.log(queryClient);
+
+  return { props: { dehydratedState: dehydrate(queryClient) } };
 };
 
 export default ReviewDetailsPage;
