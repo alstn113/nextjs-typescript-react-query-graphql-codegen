@@ -1,9 +1,10 @@
-import { GetCategoryQuery, useGetCategoryQuery } from '@/generated/graphql';
-import grahpqlRequestClient from '@/lib/clients/graphqlRequestClient';
-import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { dehydrate, DehydratedState, QueryClient } from 'react-query';
+
+import { GetCategoryQuery, useGetCategoryQuery } from '@/generated/graphql';
+import grahpqlRequestClient from '@/lib/clients/graphqlRequestClient';
+import ReviewCardComponent from '@/components/ReviewCard';
 
 const CategoryPage = () => {
   const id = useRouter().query.id as string;
@@ -17,15 +18,7 @@ const CategoryPage = () => {
     <>
       {data?.category?.reviews?.map((review) => (
         <div key={review?.id}>
-          <div>{review?.rating}</div>
-          <h2>{review?.title}</h2>
-          {review?.categories?.map((c) => (
-            <small key={c?.id}>{c?.name}</small>
-          ))}
-          <p>{review?.body.substring(0, 100)}</p>
-          <Link href={`/details/${review?.id}`}>
-            <a>Read More</a>
-          </Link>
+          <ReviewCardComponent review={review} />
         </div>
       ))}
     </>

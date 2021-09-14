@@ -32,7 +32,7 @@ const shadow = css`
 export const theme = {
   color: {
     white: '#ffffff',
-    background: '#000000',
+    background: '#ffffff',
     light_grey1: '#868e96',
     light_grey2: '#dddddd',
     light_violet0: '#f3f0ff',

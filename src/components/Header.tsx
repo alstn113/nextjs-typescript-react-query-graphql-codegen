@@ -12,25 +12,19 @@ const HeaderComponent = () => {
   return (
     <>
       <div>
-        <StyledHeader>우갸갸갸</StyledHeader>
-        <Link href="/">
-          <a>
-            <h1>Minsoo Reviews</h1>
-          </a>
-        </Link>
-        <nav>
+        <Header>
+          <Link href="/">
+            <a>Minsoo Reviews</a>
+          </Link>
+        </Header>
+        <Nav>
           <span>Filter reviews by categories : </span>
           {data?.categories?.map((category) => (
             <Link key={category?.id} href={`/category/${category?.id}`}>
               <a> {category?.name}</a>
             </Link>
           ))}
-          <div>
-            <Link href="/create">
-              <a>Create Review</a>
-            </Link>
-          </div>
-        </nav>
+        </Nav>
       </div>
     </>
   );
@@ -38,7 +32,21 @@ const HeaderComponent = () => {
 
 export default HeaderComponent;
 
-export const StyledHeader = styled('div')`
-  background-color: ${({ theme }) => theme.color.light_violet1};
-  ${({ theme }) => theme.font.xlarge};
+const Header = styled('header')`
+  ${({ theme }) => theme.font.xlarge}
+  color: ${({ theme }) => theme.color.dark_violet2};
+  padding-bottom: 10px;
+  a {
+    border-bottom: 2px solid;
+  }
+  margin-bottom: 10px;
+`;
+
+const Nav = styled('nav')`
+  span {
+    text-align: right;
+  }
+  a {
+    margin-left: 10px;
+  }
 `;

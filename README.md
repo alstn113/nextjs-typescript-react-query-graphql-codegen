@@ -1,12 +1,9 @@
 npx create-next-app 이름 --ts
 
-next@10 기준
-
 npm i react-query axios recoil
 npm i -D @types/node @types/react-dom ts-node
 
 react-query 설정 및 recoil 설정
-utils에 axios설정
 
 ts.config,json에서
 
@@ -16,7 +13,7 @@ ts.config,json에서
         "@/*": ["./src/*"]
       }
 
-추가
+추가하기
 
 src를 만들고 다 넣기
 
@@ -30,7 +27,7 @@ src를 만들고 다 넣기
       |     ├── types.ts
       ├── store
       └── styles
-            ├── global-style.ts
+            ├── global-style.tsx
             ├── emotion.d.ts
             └── theme.ts
 
