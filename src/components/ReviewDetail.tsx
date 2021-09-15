@@ -9,7 +9,7 @@ function ReviewDetailComponent({ review }: GetReviewQuery) {
       {review?.categories?.map((c) => (
         <small key={c?.id}>{c?.name}</small>
       ))}
-      <p>{review?.body.substring(0, 100)}</p>
+      <p>{review?.body}</p>
     </ReviewCard>
   );
 }

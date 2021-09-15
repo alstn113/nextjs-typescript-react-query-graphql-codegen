@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import { DehydratedState, QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 
@@ -11,6 +11,7 @@ const HomePage = () => {
     grahpqlRequestClient,
     {},
   );
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error {error.message}</p>;
   return (
@@ -24,8 +25,9 @@ const HomePage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (): Promise<{
+export const getStaticProps: GetStaticProps = async (): Promise<{
   props: { dehydratedState: DehydratedState };
+  revalidate: number;
 }> => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(
@@ -33,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (): Promise<{
     useGetReviewsQuery.fetcher(grahpqlRequestClient),
   );
 
-  return { props: { dehydratedState: dehydrate(queryClient) } };
+  return { props: { dehydratedState: dehydrate(queryClient) }, revalidate: 1 };
 };
 
 export default HomePage;
