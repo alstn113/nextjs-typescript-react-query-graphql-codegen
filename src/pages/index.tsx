@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { DehydratedState, QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 
@@ -7,13 +7,13 @@ import grahpqlRequestClient from '@/lib/clients/graphqlRequestClient';
 import ReviewCardComponent from '@/components/ReviewCard';
 
 const HomePage = () => {
-  const { isLoading, error, data } = useGetReviewsQuery<GetReviewsQuery, Error>(
+  const { isLoading, isError, error, data } = useGetReviewsQuery<GetReviewsQuery, Error>(
     grahpqlRequestClient,
     {},
   );
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error {error.message}</p>;
+  if (isError && error) return <p>Error {error.message}</p>;
   return (
     <>
       {data?.reviews?.map((review) => (
@@ -25,9 +25,8 @@ const HomePage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (): Promise<{
+export const getServerSideProps: GetServerSideProps = async (): Promise<{
   props: { dehydratedState: DehydratedState };
-  revalidate: number;
 }> => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(
@@ -35,7 +34,7 @@ export const getStaticProps: GetStaticProps = async (): Promise<{
     useGetReviewsQuery.fetcher(grahpqlRequestClient),
   );
 
-  return { props: { dehydratedState: dehydrate(queryClient) }, revalidate: 1 };
+  return { props: { dehydratedState: dehydrate(queryClient) } };
 };
 
 export default HomePage;

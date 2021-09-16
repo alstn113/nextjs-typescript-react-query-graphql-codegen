@@ -122,3 +122,6 @@ npm i -D @graphql-codegen/typescript-react-query @graphql-codegen/cli @graphql-c
 3. lib-clients에 graphql설정하기
 4. package.json에 "generate": "graphql-codegen --config codegen.yml" 스크립트 추가하기
 5. npm run generate로 generated폴더에 type이랑 useQuery useMutation 생성하기
+
+2021/09/16 포기
+왜 '/'페이지만 ssr이 안되는 걸까...
