@@ -6,7 +6,12 @@ export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K]
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 
-function fetcher<TData, TVariables>(client: GraphQLClient, query: string, variables?: TVariables, headers?: RequestInit['headers']) {
+function fetcher<TData, TVariables>(
+  client: GraphQLClient,
+  query: string,
+  variables?: TVariables,
+  headers?: RequestInit['headers'],
+) {
   return async (): Promise<TData> => client.request<TData, TVariables>(query, variables, headers);
 }
 /** All built-in and custom scalars, mapped to their actual values */
@@ -47,7 +52,6 @@ export type Category = {
   reviews?: Maybe<Array<Maybe<Review>>>;
   updatedAt: Scalars['DateTime'];
 };
-
 
 export type CategoryReviewsArgs = {
   limit?: Maybe<Scalars['Int']>;
@@ -162,7 +166,99 @@ export type LocaleInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = Category | CategoryAggregator | CategoryConnection | CategoryConnectionCreatedAt | CategoryConnectionId | CategoryConnectionName | CategoryConnectionUpdatedAt | CategoryConnection_Id | CategoryGroupBy | I18NLocale | Review | ReviewAggregator | ReviewAggregatorAvg | ReviewAggregatorMax | ReviewAggregatorMin | ReviewAggregatorSum | ReviewConnection | ReviewConnectionBody | ReviewConnectionCreatedAt | ReviewConnectionId | ReviewConnectionRating | ReviewConnectionTitle | ReviewConnectionUpdatedAt | ReviewConnection_Id | ReviewGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_Id | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_Id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_Id | UsersPermissionsUserGroupBy | CreateCategoryPayload | CreateReviewPayload | CreateRolePayload | CreateUserPayload | DeleteCategoryPayload | DeleteFilePayload | DeleteReviewPayload | DeleteRolePayload | DeleteUserPayload | UpdateCategoryPayload | UpdateReviewPayload | UpdateRolePayload | UpdateUserPayload;
+export type Morph =
+  | Category
+  | CategoryAggregator
+  | CategoryConnection
+  | CategoryConnectionCreatedAt
+  | CategoryConnectionId
+  | CategoryConnectionName
+  | CategoryConnectionUpdatedAt
+  | CategoryConnection_Id
+  | CategoryGroupBy
+  | I18NLocale
+  | Review
+  | ReviewAggregator
+  | ReviewAggregatorAvg
+  | ReviewAggregatorMax
+  | ReviewAggregatorMin
+  | ReviewAggregatorSum
+  | ReviewConnection
+  | ReviewConnectionBody
+  | ReviewConnectionCreatedAt
+  | ReviewConnectionId
+  | ReviewConnectionRating
+  | ReviewConnectionTitle
+  | ReviewConnectionUpdatedAt
+  | ReviewConnection_Id
+  | ReviewGroupBy
+  | UploadFile
+  | UploadFileAggregator
+  | UploadFileAggregatorAvg
+  | UploadFileAggregatorMax
+  | UploadFileAggregatorMin
+  | UploadFileAggregatorSum
+  | UploadFileConnection
+  | UploadFileConnectionAlternativeText
+  | UploadFileConnectionCaption
+  | UploadFileConnectionCreatedAt
+  | UploadFileConnectionExt
+  | UploadFileConnectionFormats
+  | UploadFileConnectionHash
+  | UploadFileConnectionHeight
+  | UploadFileConnectionId
+  | UploadFileConnectionMime
+  | UploadFileConnectionName
+  | UploadFileConnectionPreviewUrl
+  | UploadFileConnectionProvider
+  | UploadFileConnectionProvider_Metadata
+  | UploadFileConnectionSize
+  | UploadFileConnectionUpdatedAt
+  | UploadFileConnectionUrl
+  | UploadFileConnectionWidth
+  | UploadFileConnection_Id
+  | UploadFileGroupBy
+  | UserPermissionsPasswordPayload
+  | UsersPermissionsLoginPayload
+  | UsersPermissionsMe
+  | UsersPermissionsMeRole
+  | UsersPermissionsPermission
+  | UsersPermissionsRole
+  | UsersPermissionsRoleAggregator
+  | UsersPermissionsRoleConnection
+  | UsersPermissionsRoleConnectionDescription
+  | UsersPermissionsRoleConnectionId
+  | UsersPermissionsRoleConnectionName
+  | UsersPermissionsRoleConnectionType
+  | UsersPermissionsRoleConnection_Id
+  | UsersPermissionsRoleGroupBy
+  | UsersPermissionsUser
+  | UsersPermissionsUserAggregator
+  | UsersPermissionsUserConnection
+  | UsersPermissionsUserConnectionBlocked
+  | UsersPermissionsUserConnectionConfirmed
+  | UsersPermissionsUserConnectionCreatedAt
+  | UsersPermissionsUserConnectionEmail
+  | UsersPermissionsUserConnectionId
+  | UsersPermissionsUserConnectionProvider
+  | UsersPermissionsUserConnectionRole
+  | UsersPermissionsUserConnectionUpdatedAt
+  | UsersPermissionsUserConnectionUsername
+  | UsersPermissionsUserConnection_Id
+  | UsersPermissionsUserGroupBy
+  | CreateCategoryPayload
+  | CreateReviewPayload
+  | CreateRolePayload
+  | CreateUserPayload
+  | DeleteCategoryPayload
+  | DeleteFilePayload
+  | DeleteReviewPayload
+  | DeleteRolePayload
+  | DeleteUserPayload
+  | UpdateCategoryPayload
+  | UpdateReviewPayload
+  | UpdateRolePayload
+  | UpdateUserPayload;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -196,66 +292,53 @@ export type Mutation = {
   upload: UploadFile;
 };
 
-
 export type MutationCreateCategoryArgs = {
   input?: Maybe<CreateCategoryInput>;
 };
-
 
 export type MutationCreateReviewArgs = {
   input?: Maybe<CreateReviewInput>;
 };
 
-
 export type MutationCreateRoleArgs = {
   input?: Maybe<CreateRoleInput>;
 };
-
 
 export type MutationCreateUserArgs = {
   input?: Maybe<CreateUserInput>;
 };
 
-
 export type MutationDeleteCategoryArgs = {
   input?: Maybe<DeleteCategoryInput>;
 };
-
 
 export type MutationDeleteFileArgs = {
   input?: Maybe<DeleteFileInput>;
 };
 
-
 export type MutationDeleteReviewArgs = {
   input?: Maybe<DeleteReviewInput>;
 };
-
 
 export type MutationDeleteRoleArgs = {
   input?: Maybe<DeleteRoleInput>;
 };
 
-
 export type MutationDeleteUserArgs = {
   input?: Maybe<DeleteUserInput>;
 };
-
 
 export type MutationEmailConfirmationArgs = {
   confirmation: Scalars['String'];
 };
 
-
 export type MutationForgotPasswordArgs = {
   email: Scalars['String'];
 };
 
-
 export type MutationLoginArgs = {
   input: UsersPermissionsLoginInput;
 };
-
 
 export type MutationMultipleUploadArgs = {
   field?: Maybe<Scalars['String']>;
@@ -265,11 +348,9 @@ export type MutationMultipleUploadArgs = {
   source?: Maybe<Scalars['String']>;
 };
 
-
 export type MutationRegisterArgs = {
   input: UsersPermissionsRegisterInput;
 };
-
 
 export type MutationResetPasswordArgs = {
   code: Scalars['String'];
@@ -277,32 +358,26 @@ export type MutationResetPasswordArgs = {
   passwordConfirmation: Scalars['String'];
 };
 
-
 export type MutationUpdateCategoryArgs = {
   input?: Maybe<UpdateCategoryInput>;
 };
-
 
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info: FileInfoInput;
 };
 
-
 export type MutationUpdateReviewArgs = {
   input?: Maybe<UpdateReviewInput>;
 };
-
 
 export type MutationUpdateRoleArgs = {
   input?: Maybe<UpdateRoleInput>;
 };
 
-
 export type MutationUpdateUserArgs = {
   input?: Maybe<UpdateUserInput>;
 };
-
 
 export type MutationUploadArgs = {
   field?: Maybe<Scalars['String']>;
@@ -315,7 +390,7 @@ export type MutationUploadArgs = {
 
 export enum PublicationState {
   Live = 'LIVE',
-  Preview = 'PREVIEW'
+  Preview = 'PREVIEW',
 }
 
 export type Query = {
@@ -338,7 +413,6 @@ export type Query = {
   usersConnection?: Maybe<UsersPermissionsUserConnection>;
 };
 
-
 export type QueryCategoriesArgs = {
   limit?: Maybe<Scalars['Int']>;
   publicationState?: Maybe<PublicationState>;
@@ -347,7 +421,6 @@ export type QueryCategoriesArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-
 export type QueryCategoriesConnectionArgs = {
   limit?: Maybe<Scalars['Int']>;
   sort?: Maybe<Scalars['String']>;
@@ -355,12 +428,10 @@ export type QueryCategoriesConnectionArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-
 export type QueryCategoryArgs = {
   id: Scalars['ID'];
   publicationState?: Maybe<PublicationState>;
 };
-
 
 export type QueryFilesArgs = {
   limit?: Maybe<Scalars['Int']>;
@@ -370,7 +441,6 @@ export type QueryFilesArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-
 export type QueryFilesConnectionArgs = {
   limit?: Maybe<Scalars['Int']>;
   sort?: Maybe<Scalars['String']>;
@@ -378,12 +448,10 @@ export type QueryFilesConnectionArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-
 export type QueryReviewArgs = {
   id: Scalars['ID'];
   publicationState?: Maybe<PublicationState>;
 };
-
 
 export type QueryReviewsArgs = {
   limit?: Maybe<Scalars['Int']>;
@@ -393,7 +461,6 @@ export type QueryReviewsArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-
 export type QueryReviewsConnectionArgs = {
   limit?: Maybe<Scalars['Int']>;
   sort?: Maybe<Scalars['String']>;
@@ -401,12 +468,10 @@ export type QueryReviewsConnectionArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-
 export type QueryRoleArgs = {
   id: Scalars['ID'];
   publicationState?: Maybe<PublicationState>;
 };
-
 
 export type QueryRolesArgs = {
   limit?: Maybe<Scalars['Int']>;
@@ -416,7 +481,6 @@ export type QueryRolesArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-
 export type QueryRolesConnectionArgs = {
   limit?: Maybe<Scalars['Int']>;
   sort?: Maybe<Scalars['String']>;
@@ -424,12 +488,10 @@ export type QueryRolesConnectionArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-
 export type QueryUserArgs = {
   id: Scalars['ID'];
   publicationState?: Maybe<PublicationState>;
 };
-
 
 export type QueryUsersArgs = {
   limit?: Maybe<Scalars['Int']>;
@@ -438,7 +500,6 @@ export type QueryUsersArgs = {
   start?: Maybe<Scalars['Int']>;
   where?: Maybe<Scalars['JSON']>;
 };
-
 
 export type QueryUsersConnectionArgs = {
   limit?: Maybe<Scalars['Int']>;
@@ -458,7 +519,6 @@ export type Review = {
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
-
 
 export type ReviewCategoriesArgs = {
   limit?: Maybe<Scalars['Int']>;
@@ -598,7 +658,6 @@ export type UploadFile = {
   url: Scalars['String'];
   width?: Maybe<Scalars['Int']>;
 };
-
 
 export type UploadFileRelatedArgs = {
   limit?: Maybe<Scalars['Int']>;
@@ -860,14 +919,12 @@ export type UsersPermissionsRole = {
   users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
 };
 
-
 export type UsersPermissionsRolePermissionsArgs = {
   limit?: Maybe<Scalars['Int']>;
   sort?: Maybe<Scalars['String']>;
   start?: Maybe<Scalars['Int']>;
   where?: Maybe<Scalars['JSON']>;
 };
-
 
 export type UsersPermissionsRoleUsersArgs = {
   limit?: Maybe<Scalars['Int']>;
@@ -1221,26 +1278,67 @@ export type GetCategoryQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
+export type GetCategoryQuery = {
+  __typename?: 'Query';
+  category?: Maybe<{
+    __typename?: 'Category';
+    id: string;
+    name: string;
+    reviews?: Maybe<
+      Array<
+        Maybe<{
+          __typename?: 'Review';
+          id: string;
+          title: string;
+          body: string;
+          rating: number;
+          categories?: Maybe<Array<Maybe<{ __typename?: 'Category'; id: string; name: string }>>>;
+        }>
+      >
+    >;
+  }>;
+};
 
-export type GetCategoryQuery = { __typename?: 'Query', category?: Maybe<{ __typename?: 'Category', id: string, name: string, reviews?: Maybe<Array<Maybe<{ __typename?: 'Review', id: string, title: string, body: string, rating: number, categories?: Maybe<Array<Maybe<{ __typename?: 'Category', id: string, name: string }>>> }>>> }> };
+export type GetCategoriesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetCategoriesQuery = {
+  __typename?: 'Query';
+  categories?: Maybe<Array<Maybe<{ __typename?: 'Category'; id: string; name: string }>>>;
+};
 
+export type GetReviewsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetCategoriesQuery = { __typename?: 'Query', categories?: Maybe<Array<Maybe<{ __typename?: 'Category', id: string, name: string }>>> };
-
-export type GetReviewsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetReviewsQuery = { __typename?: 'Query', reviews?: Maybe<Array<Maybe<{ __typename?: 'Review', id: string, title: string, body: string, rating: number, categories?: Maybe<Array<Maybe<{ __typename?: 'Category', id: string, name: string }>>> }>>> };
+export type GetReviewsQuery = {
+  __typename?: 'Query';
+  reviews?: Maybe<
+    Array<
+      Maybe<{
+        __typename?: 'Review';
+        id: string;
+        title: string;
+        body: string;
+        rating: number;
+        categories?: Maybe<Array<Maybe<{ __typename?: 'Category'; id: string; name: string }>>>;
+      }>
+    >
+  >;
+};
 
 export type GetReviewQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-
-export type GetReviewQuery = { __typename?: 'Query', review?: Maybe<{ __typename?: 'Review', id: string, title: string, body: string, rating: number, categories?: Maybe<Array<Maybe<{ __typename?: 'Category', id: string, name: string }>>> }> };
-
+export type GetReviewQuery = {
+  __typename?: 'Query';
+  review?: Maybe<{
+    __typename?: 'Review';
+    id: string;
+    title: string;
+    body: string;
+    rating: number;
+    categories?: Maybe<Array<Maybe<{ __typename?: 'Category'; id: string; name: string }>>>;
+  }>;
+};
 
 export const GetCategoryDocument = `
     query GetCategory($id: ID!) {
@@ -1260,25 +1358,37 @@ export const GetCategoryDocument = `
   }
 }
     `;
-export const useGetCategoryQuery = <
-      TData = GetCategoryQuery,
-      TError = unknown
-    >(
-      client: GraphQLClient, 
-      variables: GetCategoryQueryVariables, 
-      options?: UseQueryOptions<GetCategoryQuery, TError, TData>,
-      headers?: RequestInit['headers']
-    ) => 
-    useQuery<GetCategoryQuery, TError, TData>(
-      ['GetCategory', variables],
-      fetcher<GetCategoryQuery, GetCategoryQueryVariables>(client, GetCategoryDocument, variables, headers),
-      options
-    );
+export const useGetCategoryQuery = <TData = GetCategoryQuery, TError = unknown>(
+  client: GraphQLClient,
+  variables: GetCategoryQueryVariables,
+  options?: UseQueryOptions<GetCategoryQuery, TError, TData>,
+  headers?: RequestInit['headers'],
+) =>
+  useQuery<GetCategoryQuery, TError, TData>(
+    ['GetCategory', variables],
+    fetcher<GetCategoryQuery, GetCategoryQueryVariables>(
+      client,
+      GetCategoryDocument,
+      variables,
+      headers,
+    ),
+    options,
+  );
 useGetCategoryQuery.document = GetCategoryDocument;
 
 useGetCategoryQuery.getKey = (variables: GetCategoryQueryVariables) => ['GetCategory', variables];
 
-useGetCategoryQuery.fetcher = (client: GraphQLClient, variables: GetCategoryQueryVariables, headers?: RequestInit['headers']) => fetcher<GetCategoryQuery, GetCategoryQueryVariables>(client, GetCategoryDocument, variables, headers);
+useGetCategoryQuery.fetcher = (
+  client: GraphQLClient,
+  variables: GetCategoryQueryVariables,
+  headers?: RequestInit['headers'],
+) =>
+  fetcher<GetCategoryQuery, GetCategoryQueryVariables>(
+    client,
+    GetCategoryDocument,
+    variables,
+    headers,
+  );
 export const GetCategoriesDocument = `
     query GetCategories {
   categories {
@@ -1287,25 +1397,38 @@ export const GetCategoriesDocument = `
   }
 }
     `;
-export const useGetCategoriesQuery = <
-      TData = GetCategoriesQuery,
-      TError = unknown
-    >(
-      client: GraphQLClient, 
-      variables?: GetCategoriesQueryVariables, 
-      options?: UseQueryOptions<GetCategoriesQuery, TError, TData>,
-      headers?: RequestInit['headers']
-    ) => 
-    useQuery<GetCategoriesQuery, TError, TData>(
-      variables === undefined ? ['GetCategories'] : ['GetCategories', variables],
-      fetcher<GetCategoriesQuery, GetCategoriesQueryVariables>(client, GetCategoriesDocument, variables, headers),
-      options
-    );
+export const useGetCategoriesQuery = <TData = GetCategoriesQuery, TError = unknown>(
+  client: GraphQLClient,
+  variables?: GetCategoriesQueryVariables,
+  options?: UseQueryOptions<GetCategoriesQuery, TError, TData>,
+  headers?: RequestInit['headers'],
+) =>
+  useQuery<GetCategoriesQuery, TError, TData>(
+    variables === undefined ? ['GetCategories'] : ['GetCategories', variables],
+    fetcher<GetCategoriesQuery, GetCategoriesQueryVariables>(
+      client,
+      GetCategoriesDocument,
+      variables,
+      headers,
+    ),
+    options,
+  );
 useGetCategoriesQuery.document = GetCategoriesDocument;
 
-useGetCategoriesQuery.getKey = (variables?: GetCategoriesQueryVariables) => variables === undefined ? ['GetCategories'] : ['GetCategories', variables];
+useGetCategoriesQuery.getKey = (variables?: GetCategoriesQueryVariables) =>
+  variables === undefined ? ['GetCategories'] : ['GetCategories', variables];
 
-useGetCategoriesQuery.fetcher = (client: GraphQLClient, variables?: GetCategoriesQueryVariables, headers?: RequestInit['headers']) => fetcher<GetCategoriesQuery, GetCategoriesQueryVariables>(client, GetCategoriesDocument, variables, headers);
+useGetCategoriesQuery.fetcher = (
+  client: GraphQLClient,
+  variables?: GetCategoriesQueryVariables,
+  headers?: RequestInit['headers'],
+) =>
+  fetcher<GetCategoriesQuery, GetCategoriesQueryVariables>(
+    client,
+    GetCategoriesDocument,
+    variables,
+    headers,
+  );
 export const GetReviewsDocument = `
     query GetReviews {
   reviews {
@@ -1320,25 +1443,38 @@ export const GetReviewsDocument = `
   }
 }
     `;
-export const useGetReviewsQuery = <
-      TData = GetReviewsQuery,
-      TError = unknown
-    >(
-      client: GraphQLClient, 
-      variables?: GetReviewsQueryVariables, 
-      options?: UseQueryOptions<GetReviewsQuery, TError, TData>,
-      headers?: RequestInit['headers']
-    ) => 
-    useQuery<GetReviewsQuery, TError, TData>(
-      variables === undefined ? ['GetReviews'] : ['GetReviews', variables],
-      fetcher<GetReviewsQuery, GetReviewsQueryVariables>(client, GetReviewsDocument, variables, headers),
-      options
-    );
+export const useGetReviewsQuery = <TData = GetReviewsQuery, TError = unknown>(
+  client: GraphQLClient,
+  variables?: GetReviewsQueryVariables,
+  options?: UseQueryOptions<GetReviewsQuery, TError, TData>,
+  headers?: RequestInit['headers'],
+) =>
+  useQuery<GetReviewsQuery, TError, TData>(
+    variables === undefined ? ['GetReviews'] : ['GetReviews', variables],
+    fetcher<GetReviewsQuery, GetReviewsQueryVariables>(
+      client,
+      GetReviewsDocument,
+      variables,
+      headers,
+    ),
+    options,
+  );
 useGetReviewsQuery.document = GetReviewsDocument;
 
-useGetReviewsQuery.getKey = (variables?: GetReviewsQueryVariables) => variables === undefined ? ['GetReviews'] : ['GetReviews', variables];
+useGetReviewsQuery.getKey = (variables?: GetReviewsQueryVariables) =>
+  variables === undefined ? ['GetReviews'] : ['GetReviews', variables];
 
-useGetReviewsQuery.fetcher = (client: GraphQLClient, variables?: GetReviewsQueryVariables, headers?: RequestInit['headers']) => fetcher<GetReviewsQuery, GetReviewsQueryVariables>(client, GetReviewsDocument, variables, headers);
+useGetReviewsQuery.fetcher = (
+  client: GraphQLClient,
+  variables?: GetReviewsQueryVariables,
+  headers?: RequestInit['headers'],
+) =>
+  fetcher<GetReviewsQuery, GetReviewsQueryVariables>(
+    client,
+    GetReviewsDocument,
+    variables,
+    headers,
+  );
 export const GetReviewDocument = `
     query GetReview($id: ID!) {
   review(id: $id) {
@@ -1353,22 +1489,24 @@ export const GetReviewDocument = `
   }
 }
     `;
-export const useGetReviewQuery = <
-      TData = GetReviewQuery,
-      TError = unknown
-    >(
-      client: GraphQLClient, 
-      variables: GetReviewQueryVariables, 
-      options?: UseQueryOptions<GetReviewQuery, TError, TData>,
-      headers?: RequestInit['headers']
-    ) => 
-    useQuery<GetReviewQuery, TError, TData>(
-      ['GetReview', variables],
-      fetcher<GetReviewQuery, GetReviewQueryVariables>(client, GetReviewDocument, variables, headers),
-      options
-    );
+export const useGetReviewQuery = <TData = GetReviewQuery, TError = unknown>(
+  client: GraphQLClient,
+  variables: GetReviewQueryVariables,
+  options?: UseQueryOptions<GetReviewQuery, TError, TData>,
+  headers?: RequestInit['headers'],
+) =>
+  useQuery<GetReviewQuery, TError, TData>(
+    ['GetReview', variables],
+    fetcher<GetReviewQuery, GetReviewQueryVariables>(client, GetReviewDocument, variables, headers),
+    options,
+  );
 useGetReviewQuery.document = GetReviewDocument;
 
 useGetReviewQuery.getKey = (variables: GetReviewQueryVariables) => ['GetReview', variables];
 
-useGetReviewQuery.fetcher = (client: GraphQLClient, variables: GetReviewQueryVariables, headers?: RequestInit['headers']) => fetcher<GetReviewQuery, GetReviewQueryVariables>(client, GetReviewDocument, variables, headers);
+useGetReviewQuery.fetcher = (
+  client: GraphQLClient,
+  variables: GetReviewQueryVariables,
+  headers?: RequestInit['headers'],
+) =>
+  fetcher<GetReviewQuery, GetReviewQueryVariables>(client, GetReviewDocument, variables, headers);

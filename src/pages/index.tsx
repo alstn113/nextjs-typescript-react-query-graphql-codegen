@@ -1,6 +1,5 @@
 import { GetServerSideProps } from 'next';
-import { DehydratedState, QueryClient } from 'react-query';
-import { dehydrate } from 'react-query/hydration';
+import { DehydratedState, QueryClient, dehydrate } from 'react-query';
 
 import { GetReviewsQuery, useGetReviewsQuery } from '@/generated/graphql';
 import grahpqlRequestClient from '@/lib/clients/graphqlRequestClient';
@@ -9,7 +8,6 @@ import ReviewCardComponent from '@/components/ReviewCard';
 const HomePage = () => {
   const { isLoading, isError, error, data } = useGetReviewsQuery<GetReviewsQuery, Error>(
     grahpqlRequestClient,
-    {},
   );
 
   if (isLoading) return <p>Loading...</p>;
