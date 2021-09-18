@@ -36,6 +36,7 @@ export const getStaticProps: GetStaticProps = async (
     useGetReviewQuery.getKey({ id }),
     useGetReviewQuery.fetcher(grahpqlRequestClient, { id }),
   );
+
   const data = queryClient.getQueryData(useGetReviewQuery.getKey({ id }));
 
   if (!data) {

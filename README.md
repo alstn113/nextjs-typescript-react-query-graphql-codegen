@@ -1,7 +1,7 @@
 npx create-next-app 이름 --ts
 
 npm i react-query axios recoil
-npm i -D @types/node @types/react-dom ts-node
+npm i -D @types/node @types/react @types/react-dom ts-node
 
 react-query 설정 및 recoil 설정
 
@@ -102,6 +102,8 @@ npm info "eslint-config-airbnb@latest" peerDependencies로
         "printWidth": 100
       }
 
+//.prettierignore 설정
+
 emotion 설치 및 설정
 참고 https://www.howdy-mj.me/css/emotion.js-intro/
 npm i @emotion/react @emotion/styled
@@ -130,3 +132,6 @@ npm i -D @graphql-codegen/typescript-react-query @graphql-codegen/cli @graphql-c
         grahpqlRequestClient,
         {} //이거를 지워주니까 잘 됨 ...
       );
+
+2021/09/18
+SSG 하는 방법 터득 // 지우지말고 참고하기
