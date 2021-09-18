@@ -1,6 +1,6 @@
 npx create-next-app 이름 --ts
 
-npm i react-query axios recoil
+npm i react-query
 npm i -D @types/node @types/react @types/react-dom ts-node
 
 react-query 설정 및 recoil 설정
