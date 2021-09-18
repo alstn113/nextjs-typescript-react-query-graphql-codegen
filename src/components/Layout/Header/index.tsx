@@ -7,8 +7,7 @@ const HeaderComponent = () => {
   const { isLoading, isError, error, data } = useGetCategoriesQuery<GetCategoriesQuery, Error>(
     grahpqlRequestClient,
   );
-  if (isLoading) return <p>Loading...</p>;
-  if (isError && error) return <p>Error {error.message}</p>;
+
   return (
     <>
       <div>
@@ -19,11 +18,21 @@ const HeaderComponent = () => {
         </Header>
         <Nav>
           <span>Filter reviews by categories : </span>
-          {data?.categories?.map((category) => (
-            <Link key={category?.id} href={`/category/${category?.id}`}>
-              <a> {category?.name}</a>
-            </Link>
-          ))}
+          {isLoading
+            ? `Loading...`
+            : isError && error
+            ? `Error ${error.message}`
+            : data?.categories?.map((category) => (
+                <Link
+                  key={category?.id}
+                  href={{
+                    pathname: '/category/[id]',
+                    query: { id: category?.id },
+                  }}
+                >
+                  <a> {category?.name}</a>
+                </Link>
+              ))}
         </Nav>
       </div>
     </>

@@ -8,7 +8,7 @@ import { ThemeProvider } from '@emotion/react';
 
 import { GlobalStyle } from '@/styles/global-style';
 import { theme } from '@/styles/theme';
-import HeaderComponent from '@/components/Header';
+import LayoutComponent from '@/components/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
@@ -29,8 +29,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           <ReactQueryDevtools initialIsOpen={false} />
           <ThemeProvider theme={theme}>
             <GlobalStyle />
-            <HeaderComponent />
-            <Component {...pageProps} />
+            <LayoutComponent>
+              <Component {...pageProps} />
+            </LayoutComponent>
           </ThemeProvider>
         </Hydrate>
       </QueryClientProvider>

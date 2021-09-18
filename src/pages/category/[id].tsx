@@ -1,10 +1,10 @@
 import { useRouter } from 'next/dist/client/router';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { dehydrate, DehydratedState, QueryClient } from 'react-query';
 
-import { GetCategoryQuery, useGetCategoryQuery } from '@/generated/graphql';
+import { GetCategoryQuery, useGetCategoriesQuery, useGetCategoryQuery } from '@/generated/graphql';
 import grahpqlRequestClient from '@/lib/clients/graphqlRequestClient';
-import ReviewCardComponent from '@/components/ReviewCard';
+import ReviewCardComponent from '@/components/Review/ReviewCard';
 
 const CategoryPage = () => {
   const id = useRouter().query.id as string;
@@ -25,19 +25,51 @@ const CategoryPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext,
-): Promise<{
-  props: { dehydratedState: DehydratedState };
-}> => {
-  const id = context.query.id as string;
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext,
+): Promise<
+  | { redirect: { destination: string; permanent: boolean } }
+  | {
+      props: { dehydratedState: DehydratedState };
+      revalidate: number;
+    }
+> => {
+  const id = context?.params?.id as string;
   const queryClient = new QueryClient();
+
   await queryClient.prefetchQuery(
     useGetCategoryQuery.getKey({ id }),
     useGetCategoryQuery.fetcher(grahpqlRequestClient, { id }),
   );
 
-  return { props: { dehydratedState: dehydrate(queryClient) } };
+  const data = queryClient.getQueryData(useGetCategoryQuery.getKey({ id }));
+  if (!data) {
+    return {
+      redirect: {
+        destination: '/404',
+        permanent: false,
+      },
+    };
+  }
+  return { props: { dehydratedState: dehydrate(queryClient) }, revalidate: 1 };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const data: { categories: { id: string }[] } = await grahpqlRequestClient.request(
+    useGetCategoriesQuery.document,
+  );
+
+  const paths = data?.categories?.map((category) => {
+    return {
+      params: {
+        id: category.id,
+      },
+    };
+  });
+  return {
+    paths,
+    fallback: true,
+  };
 };
 
 export default CategoryPage;

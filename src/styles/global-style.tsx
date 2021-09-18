@@ -19,7 +19,6 @@ export const GlobalStyle = () => {
         }
 
         body {
-          height: 100vh;
           max-width: 1024px;
           padding: 50px;
           margin: 0 auto;

@@ -11,7 +11,12 @@ function ReviewCardComponent({ review }: GetReviewQuery) {
         <small key={c?.id}>{c?.name}</small>
       ))}
       <p>{review?.body.substring(0, 100)}</p>
-      <Link href={`/details/${review?.id}`}>
+      <Link
+        href={{
+          pathname: '/details/[id]',
+          query: { id: review?.id },
+        }}
+      >
         <a>Read More</a>
       </Link>
     </ReviewCard>
