@@ -3,8 +3,7 @@ npx create-next-app 이름 --ts
 npm i react-query
 npm i -D @types/node @types/react @types/react-dom ts-node
 
-react-query 설정 및 recoil 설정
-
+react-query 설정
 ts.config,json에서
 
       "rootDir": ".",
@@ -21,7 +20,6 @@ src를 만들고 다 넣기
       ├── api
       ├── components
       ├── pages
-      ├── public
       ├── shared
       |     ├── styled.ts
       |     ├── types.ts
